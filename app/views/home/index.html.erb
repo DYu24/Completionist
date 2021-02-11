@@ -1,6 +1,6 @@
-<h1>Completionist</h1>
-<% if user_signed_in? %>
-    <%= link_to 'View your tasks', tasks_path %>
-<% else %>
-    <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
+<div class="jumbotron text-center">
+  <h1 class="display-3">GET SHIT DONE</h1>
+  <p class="lead">A to-do app to make your life more productive.</p>
+  <p class="lead">Completionist + You = MONEY MAKING MACHINE!!!</p>
+  <%= link_to 'Sign in', new_user_session_path, :class => "btn btn-primary btn-lg" %>
+</div>
