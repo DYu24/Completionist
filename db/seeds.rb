@@ -8,6 +8,7 @@
 5.times do |i|
     Task.create(
         title: "Recipe #{i+1}",
-        completed: false
+        completed: false,
+        user_id: 1
     )
 end
