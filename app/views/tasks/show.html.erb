@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @task.title %>
@@ -10,5 +8,6 @@
   <%= @task.completed %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Edit', edit_list_task_path(@list, @task) %> |
+<%= link_to 'Delete', list_task_path(@list, @task), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', @list %>
