@@ -1,9 +1,23 @@
-<h1>Lists</h1>
+<div class="container py-4">
+    <h1>Your Lists</h1>
+    <hr/>
+    <div class="row row-cols-3 mx-lg-n1">
+        <% @lists.each do |list| %>
+            <div class="col px-lg-1">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= list.name %></h5>
+                        <% if list.tasks.length() == 0 %>
+                            <h6 class="card-subtitle mb-2 text-muted">0 Tasks</h6>
+                        <% else %>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= list.tasks.select { |t| t.completed? }.length() %>/<%= list.tasks.length() %> Tasks Completed</h6>
+                        <% end %>
+                        <%= link_to "View list", list %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
 
-<ul>
-    <% @lists.each do |list| %>
-        <li><%= link_to list.name, list %></li>
-    <% end %>
-</ul>
-
-<%= link_to 'New List', new_list_path %>
+    <div class="my-2"><%= link_to '+ New List', new_list_path %></div>
+</div>
