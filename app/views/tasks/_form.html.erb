@@ -1,6 +1,9 @@
-<%= bootstrap_form_with(model: task, url: task.new_record? ? list_tasks_path : list_task_path, local: true) do |form| %>
+<%= bootstrap_form_with(model: task, url: path, local: true) do |form| %>
   <%= form.text_field :title, required: true %>
-  <%= form.check_box :completed %>
-  <%= form.primary "Save" %>
-  <%= link_to "Cancel", :back, class: "btn btn-secondary" %>
+  <%= form.check_box :completed, wrapper_class: "mb-2" %>
+
+  <div class="d-flex justify-content-end">
+    <%= form.primary "Save" %>
+    <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">Cancel</button>
+  </div>
 <% end %>

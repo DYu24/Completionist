@@ -1,5 +1,6 @@
 <div class="container py-4">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
+        <%= link_to '← All Lists', lists_path, class: "h4 text-decoration-none" %>
         <h2><%= @list.name %></h2>
         <div class="dropdown">
             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -12,32 +13,18 @@
         </div>
     </div>
 
-    <hr class="mt-0" />
+    <hr class="mt-1" />
 
     <% if @list.tasks.length() == 0 %>
         <h4 class="text-muted">Nothing to do</h4>
     <% else %>
         <h4>Tasks</h4>
-        <div class="list-group">
-            <% @list.tasks.each do |task| %>
-                <div class="d-flex justify-content-between list-group-item list-group-item-action">
-                    <div class="d-flex align-items-baseline">
-                            <%= button_to list_task_complete_path(@list, task), method: :patch, class: "btn btn-outline-primary btn-sm mr-2" do %>
-                                <span class="<%= task.completed? ? 'visible' : 'invisible' %>">✓</span>
-                            <% end %>
-                            <% if task.completed? %>
-                                <del><%= task.title %></del>
-                            <% else %>
-                                <%= task.title %>
-                            <% end %>
-                    </div>
-                    <%= link_to "ⓘ", list_task_path(@list, task), class: "text-decoration-none" %>
-                </div>
-            <% end %>
-        </div>
+        <%= render "tasks/group", list: @list %>
     <% end %>
 
-    <div class="my-2"><%= link_to '+ New Task', new_list_task_path(@list) %></div>
-
-    <%= link_to '← All Lists', lists_path %>
+    <button type="button" class="btn btn-link btn-sm text-decoration-none mt-1" data-toggle="modal" data-target="#newTaskModal">
+        + New Task
+    </button>
 </div>
+
+<%= render "tasks/modal", id: "newTaskModal", existing: false, list: @list, task: Task.new %>

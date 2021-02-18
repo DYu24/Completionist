@@ -1,0 +1,21 @@
+<div class="list-group">
+    <% list.tasks.each do |task| %>
+        <div class="d-flex justify-content-between list-group-item list-group-item-action">
+            <div class="d-flex align-items-baseline">
+                    <%= button_to task_complete_path(list, task), method: :patch, class: "btn btn-outline-primary btn-sm mr-2" do %>
+                        <span class="<%= task.completed? ? 'visible' : 'invisible' %>">✓</span>
+                    <% end %>
+                    <% if task.completed? %>
+                        <del><%= task.title %></del>
+                    <% else %>
+                        <%= task.title %>
+                    <% end %>
+            </div>
+            <button type="button" class="btn btn-link btn-sm text-decoration-none mt-1" data-toggle="modal" data-target="#viewTaskModal<%= task.id %>">
+                ⓘ
+            </button>
+        </div>
+
+        <%= render "tasks/modal", id: "viewTaskModal#{task.id}", existing: true, list: list, task: task %>
+    <% end %>
+</div>

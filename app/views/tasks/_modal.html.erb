@@ -1,0 +1,27 @@
+<div class="modal fade" id=<%= id %> tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <% if existing %>
+                    <h5 class="modal-title">Details</h5>
+                    <div class="dropdown">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Options
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <%= link_to 'Delete', list_task_path(list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                        </div>
+                    </div>
+                <% else %>
+                    <h5 class="modal-title">New Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                <% end %>
+            </div>
+            <div class="modal-body">
+                <%= render "tasks/form", task: task, path: existing ? list_task_path(list, task) : list_tasks_path(list) %>
+            </div>
+        </div>
+    </div>
+</div>
