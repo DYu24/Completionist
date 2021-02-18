@@ -1,6 +1,4 @@
-<h1>Editing Task</h1>
-
-<%= render 'form', task: @task %>
-
-<%= link_to 'Show', list_task_path(@list, @task) %> |
-<%= link_to '← Back', list_tasks_path(@list) %>
+<div class="container py-4">
+    <h2>Editing <%= @task.title %></h2>
+    <%= render 'form', task: @task %>
+</div>
