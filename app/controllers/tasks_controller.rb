@@ -1,9 +1,8 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_list, except: :get_all
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy toggle_completion ]
 
-  # GET /tasks or /tasks.json
   def get_all
     @tasks = []
     all_lists = current_user.lists.all
@@ -14,25 +13,20 @@ class TasksController < ApplicationController
     render :index
   end
 
-  # GET /lists/1/tasks
   def index
     @tasks = @list.tasks.all
   end
 
-  # GET /tasks/1 or /tasks/1.json
   def show
   end
 
-  # GET /tasks/new
   def new
     @task = Task.new
   end
 
-  # GET /tasks/1/edit
   def edit
   end
 
-  # POST /tasks or /tasks.json
   def create
     @task = @list.tasks.new(task_params)
 
@@ -47,7 +41,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -60,13 +53,17 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy
     respond_to do |format|
       format.html { redirect_to @list, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_completion
+    @task.update_attribute(:completed, !@task.completed)
+    redirect_to @list
   end
 
   private
