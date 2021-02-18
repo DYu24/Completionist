@@ -1,3 +1,4 @@
+<% if false %>
 <h1>Tasks</h1>
 
 <table>
@@ -23,3 +24,41 @@
 </table>
 
 <br>
+
+<% end %>
+
+<div><div class="container py-4">
+    <h1>Your Tasks</h1>
+    
+    <% @lists.each do |list| %>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline">
+                    <h3 class="card-title"><%= list.name %></h3>
+                    <h5 class="text-muted"><%= (list.tasks.select { |t| t.completed? }.length().to_f / list.tasks.length().to_f * 100).to_i %>% Complete</h5>
+                </div>
+                <hr class="mt-0" />
+
+                <div class="list-group">
+                    <% list.tasks.each do |task| %>
+                        <div class="d-flex justify-content-between list-group-item list-group-item-action">
+                            <div class="d-flex align-items-baseline">
+                                    <%= button_to task_complete_path(task), method: :patch, class: "btn btn-outline-primary btn-sm mr-2" do %>
+                                        <span class="<%= task.completed? ? 'visible' : 'invisible' %>">✓</span>
+                                    <% end %>
+                                    <% if task.completed? %>
+                                        <del><%= task.title %></del>
+                                    <% else %>
+                                        <%= task.title %>
+                                    <% end %>
+                            </div>
+                            <%= link_to "ⓘ", list_task_path(list, task), class: "text-decoration-none" %>
+                        </div>
+                    <% end %>
+                </div>
+
+                <div class="my-2"><%= link_to '+ New Task', new_list_task_path(list) %></div>
+            </div>
+        </div>
+    <% end %>
+</div>

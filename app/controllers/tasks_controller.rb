@@ -1,20 +1,10 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_list, except: :get_all
+  before_action :set_list, except: [:index, :toggle_completion]
   before_action :set_task, only: %i[ show edit update destroy toggle_completion ]
 
-  def get_all
-    @tasks = []
-    all_lists = current_user.lists.all
-    all_lists.each do |list|
-        @tasks.concat(list.tasks.all)
-    end
-
-    render :index
-  end
-
   def index
-    @tasks = @list.tasks.all
+    @lists = current_user.lists.all
   end
 
   def show
@@ -22,9 +12,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-  end
-
-  def edit
   end
 
   def create
@@ -63,7 +50,12 @@ class TasksController < ApplicationController
 
   def toggle_completion
     @task.update_attribute(:completed, !@task.completed)
-    redirect_to @list
+
+    if request.path.include? "lists"
+        redirect_to list_path(@task.list_id)
+    else
+        redirect_to tasks_path
+    end
   end
 
   private
