@@ -1,2 +1,12 @@
+$theme-colors: (
+  "primary": #0063B7
+);
+
+$font-family: Bangers;
+
 @import "~bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+@import url('https://fonts.googleapis.com/css?family=#{$font-family}');
+
+body {
+    font-family: $font-family;
+}
