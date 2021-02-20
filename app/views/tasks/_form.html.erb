@@ -1,5 +1,8 @@
 <%= bootstrap_form_with(model: task, url: path, local: true) do |form| %>
   <%= form.text_field :title, required: true %>
+  <%= form.text_area :description, label: "Description (Optional)", placeholder: "Add a description..." %>
+  <%= form.date_field :due_date, label: "Date (Optional)" %>
+  <%= form.time_select :due_time, label: "Time (Optional)", ignore_date: true, include_blank: true, disabled: task.due_date.nil?, ampm: true %>
   <%= form.check_box :completed, wrapper_class: "mb-2" %>
 
   <div class="d-flex justify-content-end">
@@ -7,3 +10,9 @@
     <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">Cancel</button>
   </div>
 <% end %>
+
+<script>
+    $('input[type="date"]').change(function() {
+        $('.rails-bootstrap-forms-time-select').children().prop('disabled', this.value == "");
+    });
+</script>
