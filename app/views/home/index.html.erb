@@ -1,6 +1,11 @@
-<div class="jumbotron text-center">
-  <h1 class="display-3">GET SHIT DONE</h1>
-  <p class="lead">A to-do app to make your life more productive.</p>
-  <p class="lead">Completionist + You = MONEY MAKING MACHINE!!!</p>
-  <%= link_to 'Sign in', new_user_session_path, :class => "btn btn-primary btn-lg" %>
+<div id="background" class="flex-grow-1">
+    <div class="d-flex flex-column justify-content-center align-items-center text-white h-100">
+        <h1 class="display-3"><span style="background: black;">&nbsp;Bored at home?&nbsp;</span></h1>
+        <h4 class="display-4"><span style="background: black;">&nbsp;Try Completionist!&nbsp;</h4>
+
+        <div class="btn-group" role="group">
+            <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-primary btn-lg" %>
+            <%= link_to 'Sign Up', new_user_registration_path, :class => "btn btn-info btn-lg" %>
+        </div>
+    </div>
 </div>
