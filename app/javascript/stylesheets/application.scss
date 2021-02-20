@@ -1,7 +1,7 @@
 $theme-colors: (
   "primary": #0063B7
 );
-
+$enable-gradients: true;
 $font-family: Bangers;
 
 @import "~bootstrap/scss/bootstrap";

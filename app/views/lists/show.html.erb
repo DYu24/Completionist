@@ -16,7 +16,9 @@
     <hr class="mt-1" />
 
     <% if @list.tasks.length() == 0 %>
-        <h4 class="text-muted">Nothing to do</h4>
+        <div class="jumbotron bg-light mb-0">
+            <h4 class="text-muted text-center">Nothing to do</h4>
+        </div>
     <% else %>
         <h4>Tasks</h4>
         <%= render "tasks/group", list: @list %>
