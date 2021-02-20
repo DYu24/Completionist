@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
         if @list.save
-          format.html { redirect_to @list }
+          format.html { redirect_back fallback_location: @list }
           format.json { render :index, status: :created, location: @list }
         else
           format.html { render :new, status: :unprocessable_entity }

@@ -1,5 +1,9 @@
-<%= bootstrap_form_with(model: list, local: true) do |form| %>
+<%= bootstrap_form_with(model: list, url: path, local: true) do |form| %>
   <%= form.text_field :name, required: true %>
-  <%= form.primary %>
-  <%= link_to "Cancel", :back, class: "btn btn-secondary" %>
+  <% form.text_area :description, label: "Description (Optional)", placeholder: "Add a description..." %>
+
+  <div class="d-flex justify-content-end">
+    <%= form.primary "Save" %>
+    <%= link_to "Cancel", "", class: "btn btn-secondary ml-1", data: { dismiss: "modal" } %>
+  </div>
 <% end %>

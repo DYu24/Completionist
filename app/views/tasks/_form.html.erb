@@ -7,7 +7,7 @@
 
   <div class="d-flex justify-content-end">
     <%= form.primary "Save" %>
-    <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">Cancel</button>
+    <%= link_to "Cancel", "", class: "btn btn-secondary ml-1", data: { dismiss: "modal" } %>
   </div>
 <% end %>
 

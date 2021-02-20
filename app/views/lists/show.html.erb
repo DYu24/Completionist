@@ -1,13 +1,13 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center">
-        <%= link_to '◄ Back', :back, class: "h4 text-decoration-none" %>
+        <%= link_to '◄ All Lists', lists_path, class: "h4 text-decoration-none" %>
         <h2><%= @list.name %></h2>
         <div class="dropdown">
             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Options
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <%= link_to 'Edit', edit_list_path, class: "dropdown-item" %>
+                <%= link_to 'Edit', "", class: "dropdown-item", data: { toggle: "modal", target: "#viewListModal" } %>
                 <%= link_to 'Delete', @list, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
             </div>
         </div>
@@ -22,9 +22,8 @@
         <%= render "tasks/group", list: @list %>
     <% end %>
 
-    <button type="button" class="btn btn-link btn-sm text-decoration-none mt-1" data-toggle="modal" data-target="#newTaskModal">
-        + New Task
-    </button>
+    <%= link_to "+ New Task", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newTaskModal" } %>
 </div>
 
 <%= render "tasks/modal", id: "newTaskModal", existing: false, list: @list, task: Task.new %>
+<%= render "modal", id: "viewListModal", existing: true, list: @list %>
