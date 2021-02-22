@@ -1,7 +1,14 @@
 <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center">
-        <%= link_to '◄ All Lists', lists_path, class: "h4 text-decoration-none" %>
-        <h2><%= @list.name %></h2>
+    <div class="d-flex justify-content-between align-items-baseline">
+        <%= link_to '◄ All Lists', lists_path, class: "h4 text-decoration-none flex-shrink-0" %>
+
+        <div class="d-flex flex-column align-items-center">
+            <h2><%= @list.name %></h2>
+            <% if @list.description && !@list.description.blank? %>
+                <span class="lead text-muted text-center text-break px-5"><%= @list.description %></span>
+            <% end %>
+        </div>
+
         <div class="dropdown">
             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Options

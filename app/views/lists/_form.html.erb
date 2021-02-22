@@ -1,6 +1,6 @@
 <%= bootstrap_form_with(model: list, url: path, local: true) do |form| %>
   <%= form.text_field :name, required: true %>
-  <% form.text_area :description, label: "Description (Optional)", placeholder: "Add a description..." %>
+  <%= form.text_area :description, label: "Description (Optional)", placeholder: "Add a description..." %>
 
   <div class="d-flex justify-content-end">
     <%= form.primary "Save" %>
