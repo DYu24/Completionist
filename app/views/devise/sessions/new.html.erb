@@ -1,0 +1,20 @@
+<div class="container d-flex flex-column align-items-center py-4 px-5">
+    <h2>Log in</h2>
+
+    <div class="w-100 mb-2">
+        <%= bootstrap_form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |form| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <%= form.email_field :email, autofocus:true, autocomplete: "email" %>
+            <%= form.password_field :password, autocomplete: "current-password" %>
+
+            <% if devise_mapping.rememberable? %>
+                <% form.check_box :remember_me %>
+            <% end %>
+
+            <%= form.primary "Log in" %>
+        <% end %>
+    </div>
+
+    <span>Don't have an account? <%= link_to "Sign up here", new_registration_path(resource_name) %></span>
+</div>
