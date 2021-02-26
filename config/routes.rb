@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
-  resources :lists do
-    resources :tasks, only: [:show, :new, :create, :update, :destroy]
+  resources :lists, except: [:edit, :new] do
+    resources :tasks, only: [:show, :create, :update, :destroy]
   end
 
   get '/tasks', to: 'tasks#index'

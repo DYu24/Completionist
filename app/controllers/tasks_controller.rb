@@ -10,10 +10,6 @@ class TasksController < ApplicationController
   def show
   end
 
-  def new
-    @task = Task.new
-  end
-
   def create
     @task = @list.tasks.new(task_params)
 

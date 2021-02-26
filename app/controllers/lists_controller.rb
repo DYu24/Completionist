@@ -9,10 +9,6 @@ class ListsController < ApplicationController
   def show
   end
 
-  def new
-    @list = List.new
-  end
-
   def create
     @list = current_user.lists.create(list_params)
 
@@ -25,9 +21,6 @@ class ListsController < ApplicationController
           format.json { render json: @list.errors, status: :unprocessable_entity }
         end
       end
-  end
-
-  def edit
   end
 
   def update
