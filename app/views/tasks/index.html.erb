@@ -11,10 +11,7 @@
         <div>
             <div class="d-flex flex-column justify-content-center jumbotron bg-light mb-0">
                 <h4 class="text-muted text-center">Nothing to do</h4>
-
-                <button type="button" class="btn btn-link btn-sm text-decoration-none mt-1" data-toggle="modal" data-target="#newTaskModal">
-                    + New Task
-                </button>
+                <%= link_to "+ New Task", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newTaskModal" } %>
             </div>
         </div>
 
@@ -33,10 +30,7 @@
                 <hr class="mt-0" />
 
                 <%= render "tasks/group", tasks: @unlisted_tasks, list: nil %>
-
-                <button type="button" class="btn btn-link btn-sm text-decoration-none mt-1" data-toggle="modal" data-target="#newTaskModal">
-                    + New Task
-                </button>
+                <%= link_to "+ New Task", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newTaskModal" } %>
             </div>
         </div>
 
@@ -52,10 +46,7 @@
                     <hr class="mt-0" />
 
                     <%= render "tasks/group", list: list %>
-
-                    <button type="button" class="btn btn-link btn-sm text-decoration-none mt-1" data-toggle="modal" data-target="#newTaskModal<%= list.id %>">
-                        + New Task
-                    </button>
+                    <%= link_to "+ New Task", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newTaskModal#{list.id}" } %>
                 </div>
             </div>
 

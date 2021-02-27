@@ -2,34 +2,50 @@
     <h1>Your Lists</h1>
     <hr/>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 m-n2">
-        <% @lists.each do |list| %>
-            <div class="col p-2">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= list.name %></h5>
+    <% if flash.any? %>
+        <div class="alert alert-danger" role="alert">
+            <%= flash[:error] %>
+        </div>
+    <% end %>
 
-                        <% if list.tasks.length() == 0 %>
-                            <h6 class="card-subtitle mb-2 text-info">0 Tasks</h6>
-                        <% else %>
-                            <h6 class="card-subtitle mb-2 text-info"><%= list.number_completed %>/<%= list.tasks.length %> Tasks Completed</h6>
-                        <% end %>
-
-                        <% if list.description && !list.description.blank? %>
-                            <span class="text-muted"><%= list.truncated_description %></span>
-                        <% end %>
-                    </div>
-
-                    <div class="card-footer">
-                        <%= link_to "View list", list %>
-                    </div>
-
-                </div>
+    <% if @lists.length == 0 %>
+        <div>
+            <div class="d-flex flex-column justify-content-center jumbotron bg-light mb-0">
+                <h4 class="text-muted text-center">You have no lists</h4>
+                <%= link_to "+ New List", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newListModal" } %>
             </div>
-        <% end %>
-    </div>
+        </div>
+    <% else %>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 m-n2">
+            <% @lists.each do |list| %>
+                <div class="col p-2">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= list.name %></h5>
 
-    <%= link_to "+ New List", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newListModal" } %>
+                            <% if list.tasks.length() == 0 %>
+                                <h6 class="card-subtitle mb-2 text-info">0 Tasks</h6>
+                            <% else %>
+                                <h6 class="card-subtitle mb-2 text-info"><%= list.number_completed %>/<%= list.tasks.length %> Tasks Completed</h6>
+                            <% end %>
+
+                            <% if list.description && !list.description.blank? %>
+                                <span class="text-muted"><%= list.truncated_description %></span>
+                            <% end %>
+                        </div>
+
+                        <div class="card-footer">
+                            <%= link_to "View list", list %>
+                        </div>
+
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        
+        <%= link_to "+ New List", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newListModal" } %>
+    <% end %>
+
 </div>
 
 <%= render "modal", id: "newListModal", existing: false, list: List.new %>

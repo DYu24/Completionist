@@ -17,7 +17,7 @@ class ListsController < ApplicationController
           format.html { redirect_back fallback_location: @list }
           format.json { render :nothing => true, status: :created, location: @list }
         else
-          flash[:error] = @task.errors.full_messages.join(', ')
+          flash[:error] = @list.errors.full_messages.join(', ')
           format.html { redirect_to request.referrer }
           format.json { render json: @list.errors, status: :unprocessable_entity }
         end
@@ -30,7 +30,7 @@ class ListsController < ApplicationController
           format.html { redirect_to @list, notice: "List was successfully updated." }
           format.json { render :nothing => true, status: :ok, location: @list }
         else
-          flash[:error] = @task.errors.full_messages.join(', ')
+          flash[:error] = @list.errors.full_messages.join(', ')
           format.html { redirect_to request.referrer }
           format.json { render json: @list.errors, status: :unprocessable_entity }
         end
