@@ -1,5 +1,6 @@
 <div class="container py-4">
     <h1>Your Tasks</h1>
+    <hr/>
 
     <% if flash.any? %>
         <div class="alert alert-danger" role="alert">
@@ -10,8 +11,8 @@
     <% if @lists.length == 0 && @unlisted_tasks.length == 0 %>
         <div>
             <div class="d-flex flex-column justify-content-center jumbotron bg-light mb-0">
-                <h4 class="text-muted text-center">Nothing to do</h4>
-                <%= link_to "+ New Task", "", class: "btn btn-link btn-sm text-decoration-none mt-1", data: { toggle: "modal", target: "#newTaskModal" } %>
+                <h4 class="text-muted text-center">You have no tasks</h4>
+                <%= link_to "+ New Task", "", class: "btn btn-link text-decoration-none mt-1", data: { toggle: "modal", target: "#newTaskModal" } %>
             </div>
         </div>
 
