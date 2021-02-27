@@ -9,7 +9,7 @@
                             Options
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <%= link_to 'Delete', list_task_path(list, task), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                            <%= link_to 'Delete', list ?  list_task_path(list, task) : task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
                         </div>
                     </div>
                 <% else %>
@@ -20,7 +20,11 @@
                 <% end %>
             </div>
             <div class="modal-body">
-                <%= render "tasks/form", task: task, path: existing ? list_task_path(list, task) : list_tasks_path(list) %>
+                <% if list %>
+                    <%= render "tasks/form", task: task, path: existing ? list_task_path(list, task) : list_tasks_path(list), existing: existing %>
+                <% else %>
+                    <%= render "tasks/form", task: task, path: existing ? task_path(task) : tasks_path, existing: existing %>
+                <% end %>
             </div>
         </div>
     </div>

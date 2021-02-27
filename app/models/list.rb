@@ -1,6 +1,7 @@
 class List < ApplicationRecord
     has_many :tasks, -> { order("completed").order("title") }, dependent: :destroy
     belongs_to :user
+    validates :name, presence: true
 
     def number_completed
         return self.tasks.select { |t| t.completed? }.length

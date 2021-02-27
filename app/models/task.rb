@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
-    belongs_to :list
+    belongs_to :list, optional: true
+    belongs_to :user
+    validates :title, presence: true
 
     def overdue?
         date_passed = !self.due_date.nil? && self.due_date.past?

@@ -15,9 +15,10 @@ class ListsController < ApplicationController
     respond_to do |format|
         if @list.save
           format.html { redirect_back fallback_location: @list }
-          format.json { render :index, status: :created, location: @list }
+          format.json { render :nothing => true, status: :created, location: @list }
         else
-          format.html { render :new, status: :unprocessable_entity }
+          flash[:error] = @task.errors.full_messages.join(', ')
+          format.html { redirect_to request.referrer }
           format.json { render json: @list.errors, status: :unprocessable_entity }
         end
       end
@@ -27,9 +28,10 @@ class ListsController < ApplicationController
     respond_to do |format|
         if @list.update(list_params)
           format.html { redirect_to @list, notice: "List was successfully updated." }
-          format.json { render :show, status: :ok, location: @list }
+          format.json { render :nothing => true, status: :ok, location: @list }
         else
-          format.html { render :edit, status: :unprocessable_entity }
+          flash[:error] = @task.errors.full_messages.join(', ')
+          format.html { redirect_to request.referrer }
           format.json { render json: @list.errors, status: :unprocessable_entity }
         end
       end

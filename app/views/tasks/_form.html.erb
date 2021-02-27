@@ -3,6 +3,11 @@
   <%= form.text_area :description, label: "Description (Optional)", placeholder: "Add a description..." %>
   <%= form.date_field :due_date, label: "Date (Optional)" %>
   <%= form.time_select :due_time, label: "Time (Optional)", ignore_date: true, include_blank: true, disabled: task.due_date.nil?, ampm: true %>
+
+  <% if existing %>
+    <%= form.collection_select :list_id, List.order(:name), :id, :name, include_blank: true %>
+  <% end %>
+
   <%= form.check_box :completed, wrapper_class: "mb-2" %>
 
   <div class="d-flex justify-content-end">

@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_165432) do
     t.text "description"
     t.date "due_date"
     t.time "due_time"
+    t.bigint "user_id"
     t.index ["list_id"], name: "index_tasks_on_list_id"
   end
 
