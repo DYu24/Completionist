@@ -36,6 +36,12 @@
             <% end %>
         </nav>
 
+        <% if alert %>
+            <div class="alert alert-danger text-center" role="alert">
+                <%= alert %>
+            </div>
+        <% end %>
+
         <%= yield %>
     </div>
 

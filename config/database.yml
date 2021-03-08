@@ -20,8 +20,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: xps15
+  username: <%= ENV['COMPLETIONIST_DATABASE_USERNAME_DEFAULT'] %>
+  password: <%= ENV['COMPLETIONIST_DATABASE_PASSWORD_DEFAULT'] %>
 
 development:
   <<: *default
@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: Completionist_production
-  username: Completionist
+  username: <%= ENV['COMPLETIONIST_DATABASE_USERNAME'] %>
   password: <%= ENV['COMPLETIONIST_DATABASE_PASSWORD'] %>
